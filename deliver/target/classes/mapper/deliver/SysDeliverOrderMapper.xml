@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysDeliverOrderMapper">
+    
+    <resultMap type="SysDeliverOrder" id="SysDeliverOrderResult">
+        <result property="id"    column="id"    />
+        <result property="deliverId"    column="deliver_id"    />
+        <result property="supplieId"    column="supplieId"    />
+        <result property="asnNo"    column="asnNo"    />
+        <result property="poNo"    column="poNo"    />
+        <result property="factory"    column="factory"    />
+        <result property="lineNumber"    column="line_number"    />
+        <result property="projectCategory"    column="project_category"    />
+        <result property="orderDate"    column="order_date"    />
+        <result property="deliveryDate"    column="delivery_date"    />
+        <result property="sku"    column="sku"    />
+        <result property="skuDescr"    column="skuDescr"    />
+        <result property="orderQuantity"    column="order_quantity"    />
+        <result property="lotatt15"    column="lotatt15"    />
+        <result property="deliveredQuantity"    column="delivered_quantity"    />
+        <result property="expectedQty"    column="expectedQty"    />
+        <result property="totalNetWeight"    column="totalNetWeight"    />
+        <result property="packUom"    column="packUom"    />
+        <result property="udf03"    column="udf03"    />
+        <result property="overRcvPercentage"    column="overRcvPercentage"    />
+        <result property="udf04"    column="udf04"    />
+        <result property="qcStatus"    column="qcStatus"    />
+        <result property="stockLocat"    column="stockLocat"    />
+        <result property="lotatt14"    column="lotatt14"    />
+        <result property="labelNumber"    column="label_number"    />
+        <result property="labelWeight"    column="label_weight"    />
+        <result property="material"    column="material"    />
+        <result property="expectedArriveTime1"    column="expectedArriveTime1"    />
+        <result property="placeOfDelivery"    column="placeOfDelivery"    />
+        <result property="addWho"    column="addWho"    />
+        <result property="addTime"    column="addTime"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="poLineNo"    column="poLineNo"    />
+        <result property="specification"    column="specification"    />
+        <result property="reviewStatus"    column="review_status"    />
+        <result property="machine"    column="machine"    />
+        <result property="cancelBill"    column="cancel_bill"    />
+        <result property="remainDeliver"    column="remain_deliver"    />
+        <result property="manager"    column="manager"    />
+    </resultMap>
+    <resultMap id="PushSaleResult" type="PushSale">
+        <result column="asnNo" property="asnNo"/>
+        <result column="poNo" property="poNo"/>
+        <result column="cancelBill" property="cancelBill"/>
+        <result column="poLineNo" property="poLineNo"/>
+    </resultMap>
+
+    <sql id="selectSysDeliverOrderVo">
+        select id, deliver_id, supplieId, asnNo, poNo, factory, line_number, project_category, order_date, delivery_date, sku, skuDescr, order_quantity, lotatt15, delivered_quantity, expectedQty, totalNetWeight, packUom, udf03, overRcvPercentage, udf04, qcStatus, stockLocat, lotatt14, label_number, label_weight, material, expectedArriveTime1, placeOfDelivery, addWho, addTime, update_by, update_time, poLineNo,specification,review_status,machine,cancel_bill,remain_deliver,manager  from sys_deliver_order
+    </sql>
+
+    <select id="selectSysDeliverOrderList" parameterType="SysDeliverOrder" resultMap="SysDeliverOrderResult">
+        <include refid="selectSysDeliverOrderVo"/>
+        <where>
+            <if test="id != null "> and id = #{id}</if>
+            <if test="deliverId != null "> and deliver_id = #{deliverId}</if>
+            <if test="supplieId != null "> and supplieId = #{supplieId}</if>
+            <if test="asnNo != null "> and asnNo = #{asnNo}</if>
+            <if test="poNo != null "> and poNo = #{poNo}</if>
+            <if test="factory != null  and factory != ''"> and factory = #{factory}</if>
+            <if test="lineNumber != null "> and line_number = #{lineNumber}</if>
+            <if test="projectCategory != null  and projectCategory != ''"> and project_category = #{projectCategory}</if>
+            <if test="orderDate != null "> and order_date = #{orderDate}</if>
+            <if test="deliveryDate != null "> and delivery_date = #{deliveryDate}</if>
+            <if test="sku != null  and sku != ''"> and sku = #{sku}</if>
+            <if test="skuDescr != null  and skuDescr != ''"> and skuDescr = #{skuDescr}</if>
+            <if test="orderQuantity != null "> and order_quantity = #{orderQuantity}</if>
+            <if test="lotatt15 != null  and lotatt15 != ''"> and lotatt15 = #{lotatt15}</if>
+            <if test="deliveredQuantity != null "> and delivered_quantity = #{deliveredQuantity}</if>
+            <if test="expectedQty != null "> and expectedQty = #{expectedQty}</if>
+            <if test="totalNetWeight != null "> and totalNetWeight = #{totalNetWeight}</if>
+            <if test="packUom != null  and packUom != ''"> and packUom = #{packUom}</if>
+            <if test="udf03 != null  and udf03 != ''"> and udf03 = #{udf03}</if>
+            <if test="overRcvPercentage != null  and overRcvPercentage != ''"> and overRcvPercentage = #{overRcvPercentage}</if>
+            <if test="udf04 != null  and udf04 != ''"> and udf04 = #{udf04}</if>
+            <if test="qcStatus != null  and qcStatus != ''"> and qcStatus = #{qcStatus}</if>
+            <if test="stockLocat != null  and stockLocat != ''"> and stockLocat = #{stockLocat}</if>
+            <if test="lotatt14 != null  and lotatt14 != ''"> and lotatt14 = #{lotatt14}</if>
+            <if test="labelNumber != null "> and label_number = #{labelNumber}</if>
+            <if test="labelWeight != null "> and label_weight = #{labelWeight}</if>
+            <if test="material != null  and material != ''"> and material = #{material}</if>
+            <if test="expectedArriveTime1 != null "> and expectedArriveTime1 = #{expectedArriveTime1}</if>
+            <if test="placeOfDelivery != null  and placeOfDelivery != ''"> and placeOfDelivery = #{placeOfDelivery}</if>
+            <if test="addWho != null  and addWho != ''"> and addWho = #{addWho}</if>
+            <if test="addTime != null "> and addTime = #{addTime}</if>
+            <if test="poLineNo != null "> and poLineNo = #{poLineNo}</if>
+            <if test="specification != null "> and specification = #{specification}</if>
+            <if test="reviewStatus != null "> and review_status = #{reviewStatus}</if>
+            <if test="machine != null "> and machine = #{machine}</if>
+            <if test="cancelBill != null "> and cancel_bill = #{cancelBill}</if>
+            <if test="remainDeliver != null "> and remain_deliver = #{remainDeliver}</if>
+        </where>
+         order by asnNo desc
+    </select>
+    
+
+    <select id="selectSysDeliverOrderById" parameterType="Long" resultMap="SysDeliverOrderResult">
+        <include refid="selectSysDeliverOrderVo"/>
+        where id = #{id}
+    </select>
+    <insert id="insertSysDeliverOrder" parameterType="SysDeliverOrder" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_deliver_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="deliverId != null">deliver_id,</if>
+            <if test="supplieId != null">supplieId,</if>
+            <if test="asnNo != null">asnNo,</if>
+            <if test="poNo != null">poNo,</if>
+            <if test="factory != null">factory,</if>
+            <if test="lineNumber != null">line_number,</if>
+            <if test="projectCategory != null">project_category,</if>
+            <if test="orderDate != null">order_date,</if>
+            <if test="deliveryDate != null">delivery_date,</if>
+            <if test="sku != null">sku,</if>
+            <if test="skuDescr != null">skuDescr,</if>
+            <if test="orderQuantity != null">order_quantity,</if>
+            <if test="lotatt15 != null">lotatt15,</if>
+            <if test="deliveredQuantity != null">delivered_quantity,</if>
+            <if test="expectedQty != null">expectedQty,</if>
+            <if test="totalNetWeight != null">totalNetWeight,</if>
+            <if test="packUom != null">packUom,</if>
+            <if test="udf03 != null">udf03,</if>
+            <if test="overRcvPercentage != null">overRcvPercentage,</if>
+            <if test="udf04 != null">udf04,</if>
+            <if test="qcStatus != null">qcStatus,</if>
+            <if test="stockLocat != null">stockLocat,</if>
+            <if test="lotatt14 != null">lotatt14,</if>
+            <if test="labelNumber != null">label_number,</if>
+            <if test="labelWeight != null">label_weight,</if>
+            <if test="material != null">material,</if>
+            <if test="expectedArriveTime1 != null">expectedArriveTime1,</if>
+            <if test="placeOfDelivery != null">placeOfDelivery,</if>
+            <if test="addWho != null">addWho,</if>
+            <if test="addTime != null">addTime,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="poLineNo != null">poLineNo,</if>
+            <if test="specification != null">specification,</if>
+            <if test="reviewStatus != null">review_status,</if>
+            <if test="machine != null">machine,</if>
+            <if test="cancelBill != null">cancel_bill,</if>
+            <if test="remainDeliver != null">remain_deliver,</if>
+            <if test="manager != null">manager,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="deliverId != null">#{deliverId},</if>
+            <if test="supplieId != null">#{supplieId},</if>
+            <if test="asnNo != null">#{asnNo},</if>
+            <if test="poNo != null">#{poNo},</if>
+            <if test="factory != null">#{factory},</if>
+            <if test="lineNumber != null">#{lineNumber},</if>
+            <if test="projectCategory != null">#{projectCategory},</if>
+            <if test="orderDate != null">#{orderDate},</if>
+            <if test="deliveryDate != null">#{deliveryDate},</if>
+            <if test="sku != null">#{sku},</if>
+            <if test="skuDescr != null">#{skuDescr},</if>
+            <if test="orderQuantity != null">#{orderQuantity},</if>
+            <if test="lotatt15 != null">#{lotatt15},</if>
+            <if test="deliveredQuantity != null">#{deliveredQuantity},</if>
+            <if test="expectedQty != null">#{expectedQty},</if>
+            <if test="totalNetWeight != null">#{totalNetWeight},</if>
+            <if test="packUom != null">#{packUom},</if>
+            <if test="udf03 != null">#{udf03},</if>
+            <if test="overRcvPercentage != null">#{overRcvPercentage},</if>
+            <if test="udf04 != null">#{udf04},</if>
+            <if test="qcStatus != null">#{qcStatus},</if>
+            <if test="stockLocat != null">#{stockLocat},</if>
+            <if test="lotatt14 != null">#{lotatt14},</if>
+            <if test="labelNumber != null">#{labelNumber},</if>
+            <if test="labelWeight != null">#{labelWeight},</if>
+            <if test="material != null">#{material},</if>
+            <if test="expectedArriveTime1 != null">#{expectedArriveTime1},</if>
+            <if test="placeOfDelivery != null">#{placeOfDelivery},</if>
+            <if test="addWho != null">#{addWho},</if>
+            <if test="addTime != null">#{addTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="poLineNo != null">#{poLineNo},</if>
+            <if test="specification != null">#{specification},</if>
+            <if test="reviewStatus != null">#{reviewStatus},</if>
+            <if test="machine != null">#{machine},</if>
+            <if test="cancelBill != null">#{cancelBill},</if>
+            <if test="remainDeliver != null">#{remainDeliver},</if>
+            <if test="manager != null">#{manager},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysDeliverOrder" parameterType="SysDeliverOrder">
+        update sys_deliver_order
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="deliverId != null">deliver_id = #{deliverId},</if>
+            <if test="supplieId != null">supplieId = #{supplieId},</if>
+            <if test="asnNo != null">asnNo = #{asnNo},</if>
+            <if test="poNo != null">poNo = #{poNo},</if>
+            <if test="factory != null">factory = #{factory},</if>
+            <if test="lineNumber != null">line_number = #{lineNumber},</if>
+            <if test="projectCategory != null">project_category = #{projectCategory},</if>
+            <if test="orderDate != null">order_date = #{orderDate},</if>
+            <if test="deliveryDate != null">delivery_date = #{deliveryDate},</if>
+            <if test="sku != null">sku = #{sku},</if>
+            <if test="skuDescr != null">skuDescr = #{skuDescr},</if>
+            <if test="orderQuantity != null">order_quantity = #{orderQuantity},</if>
+            <if test="lotatt15 != null">lotatt15 = #{lotatt15},</if>
+            <if test="deliveredQuantity != null">delivered_quantity = #{deliveredQuantity},</if>
+            <if test="expectedQty != null">expectedQty = #{expectedQty},</if>
+            <if test="totalNetWeight != null">totalNetWeight = #{totalNetWeight},</if>
+            <if test="packUom != null">packUom = #{packUom},</if>
+            <if test="udf03 != null">udf03 = #{udf03},</if>
+            <if test="overRcvPercentage != null">overRcvPercentage = #{overRcvPercentage},</if>
+            <if test="udf04 != null">udf04 = #{udf04},</if>
+            <if test="qcStatus != null">qcStatus = #{qcStatus},</if>
+            <if test="stockLocat != null">stockLocat = #{stockLocat},</if>
+            <if test="lotatt14 != null">lotatt14 = #{lotatt14},</if>
+            <if test="labelNumber != null">label_number = #{labelNumber},</if>
+            <if test="labelWeight != null">label_weight = #{labelWeight},</if>
+            <if test="material != null">material = #{material},</if>
+            <if test="expectedArriveTime1 != null">expectedArriveTime1 = #{expectedArriveTime1},</if>
+            <if test="placeOfDelivery != null">placeOfDelivery = #{placeOfDelivery},</if>
+            <if test="addWho != null">addWho = #{addWho},</if>
+            <if test="addTime != null">addTime = #{addTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="poLineNo != null">poLineNo = #{poLineNo},</if>
+            <if test="specification != null">specification = #{specification},</if>
+            <if test="reviewStatus != null">review_status = #{reviewStatus},</if>
+            <if test="machine != null">machine = #{machine},</if>
+            <if test="cancelBill != null">cancel_bill = #{cancelBill},</if>
+            <if test="remainDeliver != null">remain_deliver = #{remainDeliver},</if>
+            <if test="manager != null">manager = #{manager},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+<!--    审核状态
+        <update id="updatePutStatus" parameterType="String">-->
+<!--        update sys_deliver_order-->
+<!--        <trim prefix="SET" suffixOverrides=",">-->
+<!--            review_status = "在审核",-->
+<!--        </trim>-->
+<!--        where id in-->
+<!--        <foreach item="id" collection="array" open="(" separator="," close=")">-->
+<!--            #{id}-->
+<!--        </foreach>-->
+<!--    </update>-->
+<!--    <update id="updatePutStatusById" parameterType="Long">-->
+<!--        update sys_deliver_order-->
+<!--        <trim prefix="SET" suffixOverrides=",">-->
+<!--            review_status = "在审核",-->
+<!--        </trim>-->
+<!--        where id = #{id}-->
+<!--    </update>-->
+<!--    <update id="updateStatus" parameterType="String">-->
+<!--        update sys_deliver_order-->
+<!--        set review_status = "已审核"-->
+<!--        where id in-->
+<!--        <foreach item="id" collection="array" open="(" separator="," close=")">-->
+<!--            #{id}-->
+<!--        </foreach>-->
+<!--    </update>-->
+<!--    <update id="updateStatusById" parameterType="Long">-->
+<!--        update sys_deliver_order-->
+<!--        set review_status = "已审核"-->
+<!--        where id = #{id}-->
+<!--    </update>-->
+    <delete id="deleteSysDeliverOrderById" parameterType="Long">
+        delete from sys_deliver_order where id = #{id}
+    </delete>
+
+    <delete id="deleteSysDeliverOrderByIds" parameterType="String">
+        delete from sys_deliver_order where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findNewOddNumbers" resultType="string">
+        SELECT asnNo FROM sys_deliver_order WHERE
+            id = (SELECT MAX(id) FROM sys_deliver_order )
+    </select>
+
+    <update id="updatePushSale" parameterType="PushSale">
+        update sys_deliver_order
+        set cancel_bill = #{cancelBill}
+        where asnNo = #{asnNo} AND poNo = #{poNo} AND poLineNo = #{poLineNo}
+    </update>
+
+    <update id="delete" parameterType="Delete">
+        update sys_deliver_order
+        set remain_deliver = "1"
+        where asnNo = #{asnNo} AND line_number = #{lineNumber}
+    </update>
+<!--post计算剩余送货数 渲染到列表==>>> 下单数量-送货平台生成ASN单数量+采购订单退货数量;  退货数量: ZRETQYTY-->
+    <select id="remainSelect" parameterType="Select"  resultType="string">
+        SELECT  sum( expectedQty )
+        as cancelBill
+        FROM sys_deliver_order
+        WHERE poNo = #{poNo}  AND poLineNo = #{poLineNo}
+    </select>
+<!--    <select id="remainSelect" parameterType="Select"  resultType="string">-->
+<!--        SELECT  sum( CASE WHEN cancel_bill is null THEN  expectedQty ELSE 0 END)-->
+<!--                    - sum(CASE WHEN cancel_bill is not null THEN expectedQty ELSE 0 END)-->
+<!--        as remainDeliver-->
+<!--        FROM sys_deliver_order-->
+<!--        WHERE poNo = #{poNo}  AND poLineNo = #{poLineNo}-->
+<!--    </select>-->
+<!--    <update id="updateSelect" >-->
+<!--        update sys_deliver_order-->
+<!--        set remain_deliver = #{remainDeliver}-->
+<!--        where poNo = #{poNo} AND poLineNo = #{poLineNo}-->
+<!--    </update>-->
+<!--    <update id="roundCode"  parameterType="com.ruoyi.system.domain.SysDeliverOrder">-->
+<!--        UPDATE sys_deliver_order-->
+<!--        SET asnNo = #{asnNo}-->
+<!--        WHERE id = #{id}-->
+<!--    </update>-->
+
+<!--    <select id="maxRoundCode" parameterType="String" resultType="String">-->
+<!--        select id,max(asnNo) from sys_deliver_order-->
+<!--        GROUP BY id DESC-->
+<!--        LIMIT 1-->
+<!--    </select>-->
+</mapper>

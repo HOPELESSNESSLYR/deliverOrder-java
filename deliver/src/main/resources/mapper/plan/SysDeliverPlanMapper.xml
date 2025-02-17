@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysDeliverPlanMapper">
+    
+    <resultMap type="SysDeliverPlan" id="SysDeliverPlanResult">
+        <result property="id"    column="id"    />
+        <result property="asnNo"    column="asnNo"    />
+        <result property="lineNumber"    column="lineNumber"    />
+        <result property="supplieId"    column="supplieId"    />
+        <result property="poNo"    column="poNo"    />
+        <result property="poLineNo"    column="poLineNo"    />
+        <result property="sku"    column="sku"    />
+        <result property="skuDescr"    column="skuDescr"    />
+        <result property="businessScope"    column="businessScope"    />
+        <result property="category"    column="category"    />
+        <result property="orderDate"    column="orderDate"    />
+        <result property="deliveryDate"    column="deliveryDate"    />
+        <result property="deliverQuatity"    column="deliverQuatity"    />
+    </resultMap>
+
+    <sql id="selectSysDeliverPlanVo">
+        select id, asnNo,line_number as lineNumber, supplieId,poNo, poLineNo, sku, skuDescr, lotatt15 as businessScope, project_category as category, order_date as orderDate, delivery_date as deliveryDate, expectedQty as deliverQuatity from sys_deliver_order
+    </sql>
+
+    <select id="selectSysDeliverPlanList" parameterType="SysDeliverPlan" resultMap="SysDeliverPlanResult">
+        <include refid="selectSysDeliverPlanVo"/>
+        <where>  
+            <if test="asnNo != null  and asnNo != ''"> and asnNo = #{asnNo}</if>
+            <if test="lineNumber != null "> and lineNumber = #{lineNumber}</if>
+            <if test="supplieId != null "> and supplieId = #{supplieId}</if>
+            <if test="poNo != null  and poNo != ''"> and poNo = #{poNo}</if>
+            <if test="poLineNo != null "> and poLineNo = #{poLineNo}</if>
+            <if test="sku != null  and sku != ''"> and sku = #{sku}</if>
+            <if test="skuDescr != null  and skuDescr != ''"> and skuDescr = #{skuDescr}</if>
+            <if test="businessScope != null  and businessScope != ''"> and businessScope = #{businessScope}</if>
+            <if test="category != null  and category != ''"> and category = #{category}</if>
+            <if test="orderDate != null "> and orderDate = #{orderDate}</if>
+            <if test="deliveryDate != null "> and delivery_Date = #{deliveryDate}</if>
+            <if test="deliverQuatity != null "> and deliverQuatity = #{deliverQuatity}</if>
+        </where>
+        order by deliveryDate desc
+    </select>
+    
+    <select id="selectSysDeliverPlanById" parameterType="Long" resultMap="SysDeliverPlanResult">
+        <include refid="selectSysDeliverPlanVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertSysDeliverPlan" parameterType="SysDeliverPlan" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_deliver_plan
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="asnNo != null">asnNo,</if>
+            <if test="lineNumber != null">lineNumber,</if>
+            <if test="supplieId != null">supplieId,</if>
+            <if test="poNo != null">poNo,</if>
+            <if test="poLineNo != null">poLineNo,</if>
+            <if test="sku != null">sku,</if>
+            <if test="skuDescr != null">skuDescr,</if>
+            <if test="businessScope != null">businessScope,</if>
+            <if test="category != null">category,</if>
+            <if test="orderDate != null">orderDate,</if>
+            <if test="deliveryDate != null">deliveryDate,</if>
+            <if test="deliverQuatity != null">deliverQuatity,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="asnNo != null">#{asnNo},</if>
+            <if test="lineNumber != null">#{lineNumber},</if>
+            <if test="supplieId != null">#{supplieId},</if>
+            <if test="poNo != null">#{poNo},</if>
+            <if test="poLineNo != null">#{poLineNo},</if>
+            <if test="sku != null">#{sku},</if>
+            <if test="skuDescr != null">#{skuDescr},</if>
+            <if test="businessScope != null">#{businessScope},</if>
+            <if test="category != null">#{category},</if>
+            <if test="orderDate != null">#{orderDate},</if>
+            <if test="deliveryDate != null">#{deliveryDate},</if>
+            <if test="deliverQuatity != null">#{deliverQuatity},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysDeliverPlan" parameterType="SysDeliverPlan">
+        update sys_deliver_plan
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="asnNo != null">asnNo = #{asnNo},</if>
+            <if test="lineNumber != null">lineNumber = #{lineNumber},</if>
+            <if test="supplieId != null">supplieId = #{supplieId},</if>
+            <if test="poNo != null">poNo = #{poNo},</if>
+            <if test="poLineNo != null">poLineNo = #{poLineNo},</if>
+            <if test="sku != null">sku = #{sku},</if>
+            <if test="skuDescr != null">skuDescr = #{skuDescr},</if>
+            <if test="businessScope != null">businessScope = #{businessScope},</if>
+            <if test="category != null">category = #{category},</if>
+            <if test="orderDate != null">orderDate = #{orderDate},</if>
+            <if test="deliveryDate != null">deliveryDate = #{deliveryDate},</if>
+            <if test="deliverQuatity != null">deliverQuatity = #{deliverQuatity},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysDeliverPlanById" parameterType="Long">
+        delete from sys_deliver_plan where id = #{id}
+    </delete>
+
+    <delete id="deleteSysDeliverPlanByIds" parameterType="String">
+        delete from sys_deliver_plan where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
